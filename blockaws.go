@@ -90,7 +90,7 @@ func LoadInitialAWSData(logger *zap.Logger) {
 		return
 	}
 
-	logger.Info("Loaded AWS IP ranges", zap.Int("ranges", len(data.Prefixes)), zap.String("createDate", data.CreateDate))
+	logger.Info("Loaded AWS IP ranges", zap.Int("ranges ipv4", len(data.Prefixes)), zap.Int("ranges ipv6", len(data.IPv6Prefixes)), zap.String("createDate", data.CreateDate))
 }
 
 // Matches checks if given IP address is in the list of blocked AWS IP addresses
