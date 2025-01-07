@@ -69,5 +69,8 @@ func LoadInitialAWSData(logger *zap.Logger) {
 }
 
 func Matches(ip string) bool {
+	if matcher == nil {
+		return false // matcher not initialized or some other error occurred - we do not want Caddy to crash
+	}
 	return matcher.Match(net.ParseIP(ip))
 }
