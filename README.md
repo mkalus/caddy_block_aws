@@ -9,7 +9,8 @@ simply unwanted.
 
 The module loads the official AWS ip range file from https://ip-ranges.amazonaws.com/ip-ranges.json and parses it. AWS
 contains over 8000 ip ranges, so an efficient ip matching is required. I use
-[Ryo Namiki's ipfilter](github.com/paralleltree/ipfilter) for this, since it implements an efficient binary tree search.
+[Ryo Namiki's ipfilter](https://github.com/paralleltree/ipfilter) for this, since it implements an efficient binary tree
+search.
 
 ## TODOs
 
