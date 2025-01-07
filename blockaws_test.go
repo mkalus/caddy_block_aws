@@ -57,4 +57,8 @@ func Test_Matches(t *testing.T) {
 	if Matches("203.5.113.1") {
 		t.Error("expected no match for 203.5.113.1")
 	}
+
+	if Matches("65") { // invalid address
+		t.Error("expected no match for invalid address")
+	}
 }
