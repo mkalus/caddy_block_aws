@@ -14,8 +14,6 @@ func init() {
 	httpcaddyfile.RegisterHandlerDirective("blockaws", parseCaddyfileForAWS)
 }
 
-var loadingAWSData bool
-
 type BlockAWS struct {
 	logger *zap.Logger
 }
@@ -31,17 +29,14 @@ func (BlockAWS) CaddyModule() caddy.ModuleInfo {
 func (m *BlockAWS) Provision(ctx caddy.Context) error {
 	m.logger = ctx.Logger()
 
-	if !loadingAWSData {
-		m.logger.Info("Starting AWS blocker module")
-		loadingAWSData = true
-		LoadInitialAWSData(m.logger)
-	}
+	LoadInitialAWSData(m.logger)
+
 	return nil
 }
 
 // ServeHTTP implements caddyhttp.MiddlewareHandler.
 func (m BlockAWS) ServeHTTP(w http.ResponseWriter, r *http.Request, next caddyhttp.Handler) error {
-	if Matches(r.RemoteAddr) {
+	if MatchesWithCache(r.Context(), r.RemoteAddr) {
 		m.logger.Info("Blocking AWS IP address", zap.String("ip", r.RemoteAddr))
 		http.Error(w, "IP address is blocked", http.StatusForbidden)
 		return nil
