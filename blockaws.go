@@ -68,6 +68,7 @@ func LoadInitialAWSData(logger *zap.Logger) {
 	logger.Info("Loaded AWS IP ranges", zap.Int("ip_count", len(data.Prefixes)))
 }
 
+// Matches checks if given IP address is in the list of blocked AWS IP addresses
 func Matches(ip string) bool {
 	if matcher == nil {
 		return false // matcher not initialized or some other error occurred - we do not want Caddy to crash
