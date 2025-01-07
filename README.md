@@ -17,7 +17,8 @@ search.
 There are still some todos to implement/check:
 
 * [ ] Periodic update of the data: Right now, the AWS ip list only loaded once. It should be updated once in a while.
-* [ ] Caching? Check if it is faster to cache ips once they are checked in the binary tree (especially on misses).
+* [x] Caching? Check if it is faster to cache ips once they are checked in the binary tree (especially on misses).
+* [ ] Configurable settings (for cache, omission of ipv4/ipv6)
 
 ## Requirements
 
