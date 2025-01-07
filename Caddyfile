@@ -1,0 +1,10 @@
+{
+	order blockaws after header
+	auto_https off
+}
+
+http://localhost:2015 {
+	blockaws
+
+	respond "Hello, world!"
+}
