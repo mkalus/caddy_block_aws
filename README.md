@@ -44,8 +44,23 @@ http://localhost:2015 {
 }
 ```
 
+Compile you custom Caddy server using:
 
-## Testing
+```shell
+xcaddy build --with github.com/mkalus/caddy_block_aws
+```
+
+And run it:
+
+```shell
+./caddy run
+```
+You should see a log entry http.handlers.blockaws  Loaded AWS IP ranges` - this shows that the directive has been loaded
+correctly.
+
+## Compiling from Source
+
+You can clone this repository and run:
 
 ```bash
 xcaddy run
@@ -60,10 +75,8 @@ You can test with:
 curl -v localhost:2015
 ```
 
-If you try this from an AWS server, your request *should* be blocked.
-
-## Building for Production
+If you try this from an AWS server, your request *should* be blocked. Building from a local repo is done via:
 
 ```bash
-xcaddy build --with https://github.com/mkalus/caddy_block_aws=.
+xcaddy build --with github.com/mkalus/caddy_block_aws=.
 ```
