@@ -26,7 +26,7 @@ There are still some todos to implement/check:
 * xcaddy: `go install github.com/caddyserver/xcaddy/cmd/xcaddy@latest`
 
 
-## Using
+## Usage
 
 The module implements a simple directive `blockaws` to be included in your caddy file. Since this is a third party
 directive, you have to tell Caddy when to add the directive using the global `order` setting.
@@ -46,7 +46,7 @@ http://localhost:2015 {
 }
 ```
 
-Compile you custom Caddy server using:
+Compile your custom Caddy server using:
 
 ```shell
 xcaddy build --with github.com/mkalus/caddy_block_aws
