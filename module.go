@@ -14,6 +14,7 @@ func init() {
 	httpcaddyfile.RegisterHandlerDirective("blockaws", parseCaddyfileForAWS)
 }
 
+// BlockAWS is a Caddy module that blocks all AWS IP addresses taken from https://ip-ranges.amazonaws.com/ip-ranges.json
 type BlockAWS struct {
 	logger *zap.Logger
 }
@@ -44,6 +45,7 @@ func (m BlockAWS) ServeHTTP(w http.ResponseWriter, r *http.Request, next caddyht
 	return next.ServeHTTP(w, r)
 }
 
+// UnmarshalCaddyfile unmarshals a caddyfile.
 func (m *BlockAWS) UnmarshalCaddyfile(d *caddyfile.Dispenser) error {
 	d.Next() // consume directive name
 	return nil
