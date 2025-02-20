@@ -7,7 +7,7 @@ toolchain go1.23.4
 require (
 	github.com/caddyserver/caddy/v2 v2.9.1
 	github.com/paralleltree/ipfilter v0.0.0-20241013130008-736a5d444e3b
-	github.com/viccon/sturdyc v1.0.8
+	github.com/viccon/sturdyc v1.1.3
 	go.uber.org/zap v1.27.0
 )
 
