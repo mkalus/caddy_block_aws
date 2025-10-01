@@ -38,7 +38,7 @@ func (m *BlockAWS) Provision(ctx caddy.Context) error {
 
 // ServeHTTP implements caddyhttp.MiddlewareHandler.
 func (m BlockAWS) ServeHTTP(w http.ResponseWriter, r *http.Request, next caddyhttp.Handler) error {
-	if MatchesWithCache(r.Context(), r.RemoteAddr) {
+	if Matches(r.RemoteAddr) {
 		m.logger.Info("Blocking AWS IP address", zap.String("ip", r.RemoteAddr))
 		http.Error(w, "IP address is blocked", http.StatusForbidden)
 		return nil

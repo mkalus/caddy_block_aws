@@ -1,14 +1,11 @@
 package caddy_block_aws
 
 import (
-	"context"
 	"encoding/json"
 	"net"
 	"net/http"
-	"time"
 
 	"github.com/paralleltree/ipfilter"
-	"github.com/viccon/sturdyc"
 	"go.uber.org/zap"
 )
 
@@ -100,25 +97,4 @@ func Matches(ip string) bool {
 		return false // matcher not initialized or some other error occurred - we do not want Caddy to crash
 	}
 	return matcher.Match(net.ParseIP(ip))
-}
-
-// sturdyc.Client is used for caching IP ranges to reduce the number of API calls
-var cacheClient *sturdyc.Client[bool]
-
-func init() {
-	cacheClient = sturdyc.New[bool](10000, 10, 2*time.Hour, 10)
-}
-
-// MatchesWithCache checks if given IP address is in the list of blocked AWS IP addresses, using caching
-func MatchesWithCache(ctx context.Context, ip string) bool {
-	if matcher == nil {
-		return false // matcher not initialized or some other error occurred - we do not want Caddy to crash
-	}
-
-	fetchFunc := func(ctx context.Context) (bool, error) {
-		return matcher.Match(net.ParseIP(ip)), nil
-	}
-
-	result, _ := cacheClient.GetOrFetch(ctx, ip, fetchFunc)
-	return result
 }

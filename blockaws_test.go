@@ -1,7 +1,6 @@
 package caddy_block_aws
 
 import (
-	"context"
 	"crypto/rand"
 	"net"
 	"testing"
@@ -70,7 +69,7 @@ func Benchmark_Matches(b *testing.B) {
 	if err != nil {
 		b.Fatal(err)
 	}
-	ctx := context.Background()
+	//ctx := context.Background()
 
 	b.Run("Matches", func(b *testing.B) {
 		for i := 0; i < b.N; i++ {
@@ -79,14 +78,14 @@ func Benchmark_Matches(b *testing.B) {
 			}
 		}
 	})
-
-	b.Run("MatchesWithCache", func(b *testing.B) {
-		for i := 0; i < b.N; i++ {
-			for _, ip := range ips {
-				MatchesWithCache(ctx, ip)
-			}
-		}
-	})
+	//
+	//b.Run("MatchesWithCache", func(b *testing.B) {
+	//	for i := 0; i < b.N; i++ {
+	//		for _, ip := range ips {
+	//			MatchesWithCache(ctx, ip)
+	//		}
+	//	}
+	//})
 }
 
 func populateTestIPs() ([]string, error) {
