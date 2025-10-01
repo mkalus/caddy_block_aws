@@ -3,12 +3,13 @@ package caddy_block_aws
 import (
 	"context"
 	"encoding/json"
-	"github.com/paralleltree/ipfilter"
-	"github.com/viccon/sturdyc"
-	"go.uber.org/zap"
 	"net"
 	"net/http"
 	"time"
+
+	"github.com/paralleltree/ipfilter"
+	"github.com/viccon/sturdyc"
+	"go.uber.org/zap"
 )
 
 var loadingAWSData bool
