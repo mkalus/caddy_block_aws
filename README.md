@@ -49,7 +49,7 @@ http://localhost:2015 {
 Compile your custom Caddy server using:
 
 ```shell
-xcaddy build --with github.com/mkalus/caddy_block_aws
+xcaddy build --with github.com/mkalus/caddy_block_aws@main
 ```
 
 And run it:
