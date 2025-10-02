@@ -52,6 +52,12 @@ Compile your custom Caddy server using:
 xcaddy build --with github.com/mkalus/caddy_block_aws@main
 ```
 
+Optionally, you can also create this by checking out the repository and build from local code:
+
+```shell
+xcaddy build --with github.com/mkalus/caddy_block_aws=.
+```
+
 And run it:
 
 ```shell
