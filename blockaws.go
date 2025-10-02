@@ -96,5 +96,10 @@ func Matches(ip string) bool {
 	if matcher == nil {
 		return false // matcher not initialized or some other error occurred - we do not want Caddy to crash
 	}
-	return matcher.Match(net.ParseIP(ip))
+	// try to parse IP address
+	host, _, _ := net.SplitHostPort(ip)
+	if host == "" {
+		return false // invalid IP address format - we do not want Caddy to crash
+	}
+	return matcher.Match(net.ParseIP(host))
 }

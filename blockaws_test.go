@@ -35,8 +35,8 @@ func Test_Matches(t *testing.T) {
 	// reset matcher
 	matcher = nil
 
-	if Matches("192.51.100.1") { // match vs. nil matcher should work
-		t.Error("expected no match for 192.51.100.1")
+	if Matches("192.51.100.1:54572") { // match vs. nil matcher should work
+		t.Error("expected no match for 192.51.100.1:54572")
 	}
 
 	data := &AWSData{
@@ -51,16 +51,24 @@ func Test_Matches(t *testing.T) {
 		t.Error(err)
 	}
 
-	if !Matches("198.51.100.1") {
-		t.Error("expected match for 198.51.100.1")
+	if !Matches("198.51.100.1:54572") {
+		t.Error("expected match for 198.51.100.1:54572")
 	}
 
-	if Matches("203.5.113.1") {
-		t.Error("expected no match for 203.5.113.1")
+	if Matches("203.5.113.1:54572") {
+		t.Error("expected no match for 203.5.113.1:54572")
 	}
 
-	if Matches("65") { // invalid address
+	if Matches("65:54572") { // invalid address
 		t.Error("expected no match for invalid address")
+	}
+
+	if Matches("[::1]:54572") {
+		t.Error("expected no match for :54572")
+	}
+
+	if Matches("127.0.0.1:54572") {
+		t.Error("expected no match for 127.0.0.1:54572")
 	}
 }
 
